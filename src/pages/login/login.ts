@@ -7,7 +7,9 @@ import { AlertController, LoadingController } from "ionic-angular";
 import {Provider} from '../../provider/provider'
 import * as jwtDecode from 'jwt-decode';
 import { StatusBar } from '@ionic-native/status-bar';
+import { AllservicesService } from "../../services/allservices/allservices.component.service";
 
+// import {ServicesService} from "../../services/services/services.component.services.ts"
 /**
  * Generated class for the LoginPage page.
  *
@@ -30,7 +32,9 @@ export class LoginPage {
     private alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
     public provider:Provider,
-    public statusBar: StatusBar
+    public statusBar: StatusBar,
+    public allservicesService:AllservicesService
+    // public servicesService:ServicesService
   ) {}
   ionViewWillEnter() {
     let tabs = document.querySelectorAll(".show-tabbar");

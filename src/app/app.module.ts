@@ -25,8 +25,7 @@ import {BookingService} from '../services/booking-service/booking.component.serv
 import {ChatService} from '../services/chat-service/chat.component.service'
 import {EmailService} from '../services/email-service/email.component.service'
 import {CheckinService} from '../services/checkin-service/checkin.component.service'
-import {ServicesService} from '../services/services/services.component.services'
-
+import {AllservicesService} from '../services/allservices/allservices.component.service'
 import {NativeHttpWrapper} from 'ionic-native-http-angular-wrapper';
 import { Geolocation } from "@ionic-native/geolocation";
 import {OdmService} from '../services/odm-service/odm.component.service'
@@ -80,7 +79,7 @@ import 'leaflet-routing-machine';
     ListingService,
     BookingService,
     CheckinService,
-    ServicesService,
+    AllservicesService,
     Geolocation,
     EmailService,
     OdmService,
