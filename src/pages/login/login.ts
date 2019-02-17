@@ -34,7 +34,6 @@ export class LoginPage {
     public provider:Provider,
     public statusBar: StatusBar,
     public allservicesService:AllservicesService
-    // public servicesService:ServicesService
   ) {}
   ionViewWillEnter() {
     let tabs = document.querySelectorAll(".show-tabbar");
@@ -56,8 +55,31 @@ export class LoginPage {
         localStorage.setItem('token', this.provider.token);
         this.provider.userData = jwtDecode( data['token']);
         console.log(this.provider.userData)
-        this.navCtrl.push(TabsPage);
-        loading.dismiss();
+        this.allservicesService.getAccountByID(this.provider.userData["data"]["USERID"]).subscribe(dataID=>{
+          console.log("data isss",dataID);
+          if(dataID.length===0){
+            this.allservicesService.addNewAccount(this.provider.userData["data"]["USERID"]).subscribe(insertData=>{
+              console.log("data sucesfully inserted",insertData)
+              this.navCtrl.push(TabsPage);
+              loading.dismiss();
+            },(error)=>{
+
+            })
+          }
+          else{
+            this.navCtrl.push(TabsPage);
+            loading.dismiss();
+          }
+        },(error)=>{
+          let alert = this.alertCtrl.create({
+            title: "Alert!",
+            subTitle: "OOOOPS... Something Went Wrong",
+            buttons: ["Dismiss"]
+          });
+          loading.dismiss();
+          alert.present();
+        })
+
       },
       error => {
         console.log(error)
