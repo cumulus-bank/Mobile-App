@@ -25,8 +25,8 @@ export class HomePage {
         b: 5522,
         c: 8432,
         d: 2264,
-        expires: '7/12',
-        bank: 'Bank of America'
+        expires: '9000',
+        bank: 'Cumulus Bank'
       },
       {
         state: 'OFF',
@@ -35,8 +35,8 @@ export class HomePage {
         b: 5321,
         c: 8283,
         d: 9271,
-        expires: '8/19',
-        bank: 'JPMorgan'
+        expires: '8000',
+        bank: 'Cumulus Bank'
       },
       {
         state: 'ON',
@@ -45,8 +45,8 @@ export class HomePage {
         b: 2445,
         c: 9143,
         d: 7846,
-        expires: '11/23',
-        bank: 'CityBank'
+        expires: '7000',
+        bank: 'Cumulus Bank'
       }
     ];
   }
