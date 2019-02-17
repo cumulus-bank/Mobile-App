@@ -149,7 +149,7 @@ export class ServicesService {
         "Content-Type": "application/json"
       })
     });
-    const link = this.provider.apiUrl.balanceUpdate;
+    const link = this.provider.apiUrl.addTransaction;
     const bodyObject = {
         ID:ID,
         Product:Product,
@@ -163,6 +163,38 @@ export class ServicesService {
     const bodyString = JSON.stringify(bodyObject); // Stringify payload
     return this.http
       .post(link, bodyObject, options) // ...using post request
+      .map((res: Response) => res.json())
+      .catch((error: any) => {
+        console.log(error);
+        return Observable.throw(error.json().error || "Server error");
+      });
+  }
+
+  public getAccountById(ID): Observable<any> {
+    const options = new RequestOptions({
+      headers: new Headers({
+        "Content-Type": "application/json"
+      })
+    });
+    const link = this.provider.apiUrl.getAccountById+'/'+ID;
+    return this.http
+      .get(link , options) // ...using post request
+      .map((res: Response) => res.json())
+      .catch((error: any) => {
+        console.log(error);
+        return Observable.throw(error.json().error || "Server error");
+      });
+  }
+
+  public getAccountByID(ID): Observable<any> {
+    const options = new RequestOptions({
+      headers: new Headers({
+        "Content-Type": "application/json"
+      })
+    });
+    const link = this.provider.apiUrl.getAccountByID+'/'+ID;
+    return this.http
+      .get(link , options) // ...using post request
       .map((res: Response) => res.json())
       .catch((error: any) => {
         console.log(error);
