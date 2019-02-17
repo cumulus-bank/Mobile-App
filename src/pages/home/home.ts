@@ -3,19 +3,23 @@ import { NavController, ModalController } from "ionic-angular";
 import { BookingPage } from "../booking/booking";
 import { ListingService } from "../../services/listing-schedule-service/listing.component.service";
 import { AlertController, LoadingController } from "ionic-angular";
-
+import { AllservicesService } from "../../services/allservices/allservices.component.service";
+import {Provider} from "../../provider/provider"
 @Component({
   selector: "page-home",
   templateUrl: "home.html"
 })
 export class HomePage {
   public cards: any;
+  public data;
 
   constructor(
     public navCtrl: NavController,
     public listingService: ListingService,
     private alertCtrl: AlertController,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public allservicesService:AllservicesService,
+    public provider:Provider
   ) {
     this.cards = [
       {
@@ -50,12 +54,33 @@ export class HomePage {
       }
     ];
   }
-  update(card){
-    if(card.state=='ON'){
-      card.state = 'OFF'
-    }else{
-      card.state = 'ON';
-    }
+  update(ID){
+    let loading = this.loadingCtrl.create({
+      content: "Please wait..."
+    });
+    this.allservicesService.activate(ID).subscribe(data=>{
+      this.allservicesService.getAccountByID(this.provider.userData["data"]["USERID"]).subscribe(dataID=>{
+        this.data = dataID[0];
+        console.log("data newww",this.data)
+        loading.dismiss()
+      },(error)=>{
+        loading.dismiss()
+      })
+    },(error)=>{
+      loading.dismiss()
+    })
   }
-  
+  ionViewDidLoad() {
+    console.log("vieww neter")
+    let loading = this.loadingCtrl.create({
+      content: "Please wait..."
+    });
+    this.allservicesService.getAccountByID(this.provider.userData["data"]["USERID"]).subscribe(dataID=>{
+      this.data = dataID[0];
+      console.log("data isssssssss",this.data)
+      loading.dismiss()
+    },(error)=>{
+      loading.dismiss()
+    })
+  }
 }
