@@ -18,11 +18,10 @@ export class SignupPage {
   public modalData = ["GOLD", "SILVER", "BRONZE"];
   firstName: String;
   lastName: String;
-  location: String;
+  mobile: String;
   age: Number;
   email: String;
   password: String;
-  tier: String;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -49,8 +48,7 @@ export class SignupPage {
         this.age,
         this.email,
         this.password,
-        this.location,
-        this.tier
+        this.mobile
       )
       .subscribe(
         data => {
@@ -76,14 +74,5 @@ export class SignupPage {
           console.log(error);
         }
       );
-    console.log(
-      this.firstName,
-      this.lastName,
-      this.location,
-      this.age,
-      this.email,
-      this.password,
-      this.tier
-    );
   }
 }

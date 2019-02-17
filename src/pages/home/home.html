@@ -5,42 +5,60 @@
           <img src="../assets/ibm.png" alt="ibm" height="20" width="40">
         </button>
       </ion-buttons>
-      <ion-title color="primary">Booking</ion-title>
+      <ion-title color="primary">My Account</ion-title>
     </ion-toolbar>
   </ion-header>
   
-  <ion-content class="masters">
-    <ion-list no-line>
-      <ion-item>
-        <ion-label>Select Source</ion-label>
-        <ion-select [(ngModel)]="origin">
-          <ion-option value="DXB">Dubai</ion-option>
-          <ion-option value="CAI">Cairo</ion-option>
-          <ion-option value="IND">India</ion-option>
-          <ion-option value="BWI">Washington</ion-option>
-          <ion-option value="MAD">Madrid</ion-option>
-        </ion-select>
-      </ion-item>
-      <ion-item>
-        <ion-label>Select Destination </ion-label>
-        <ion-select [(ngModel)]="dest">
-          <ion-option value="DXB">Dubai</ion-option>
-          <ion-option value="CAI">Cairo</ion-option>
-          <ion-option value="IND">India</ion-option>
-          <ion-option value="BWI">Washington</ion-option>
-          <ion-option value="MAD">Madrid</ion-option>
-        </ion-select>
-      </ion-item>
-      <ion-item>
-        <ion-label>Travel Date</ion-label>
-        <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="date"></ion-datetime>
-      </ion-item>
+  <ion-content>
+    <ion-list>
+      <ion-item-sliding no-padding margin-bottom *ngFor="let card of cards">
+        <ion-item no-padding lines="none">
+          <ion-grid [class.cardON]="card.state=='ON'" [class.cardOFF]="card.state=='OFF'">
+            <ion-row>
+              <ion-col class="state">
+                <div class="msg">
+                  <span [class.ON]="card.state=='ON'" [class.OFF]="card.state=='OFF'"></span> Card {{card.state}}
+                </div>
+              </ion-col>
+              <ion-col class="logo">
+                <img class="brand" [src]="card.logo"  height="30" width="80">
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="chip">
+                <img src="assets/chip.png"  height="40" width="50">
+              </ion-col>
+            </ion-row>
+            <ion-row class="digits">
+              <ion-col class="number">
+                {{card.a}}
+              </ion-col>
+              <ion-col class="number">
+                {{card.b}}
+              </ion-col>
+              <ion-col class="number">
+                {{card.c}}
+              </ion-col>
+              <ion-col class="number">
+                {{card.d}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="date">
+                Expires: {{card.expires}}
+              </ion-col>
+              <ion-col class="bank">
+                {{card.bank}}
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+        <ion-item-options padding side="end" color="white" (click)="update(card)">
+          <ion-icon id="power" [color]="card.state=='ON' ? 'danger' : 'success'" name="power"></ion-icon>
+        </ion-item-options>
+      </ion-item-sliding>
     </ion-list>
-    <button ion-button block outline color="tab" (click)="search()">Search</button>
-  
-  </ion-content>
-  
-
+    </ion-content>
   <ion-footer no-border>
 
     <footer>

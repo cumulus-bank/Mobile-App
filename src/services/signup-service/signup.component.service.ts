@@ -17,7 +17,7 @@ export class SignupService {
         this.params = {};
     }
 
-    public signup(firstName,lastName,age,email,password,location,tier): Observable<any> {
+    public signup(firstName,lastName,age,email,password,mobile): Observable<any> {
         const options = new RequestOptions({
             headers: new Headers({
                 'Content-Type': 'application/json'
@@ -30,8 +30,7 @@ export class SignupService {
             'age':Number(age),
             'email':email,
             'password':password,
-            'location':location,
-            'tier':tier
+            'mobile':mobile,
         }
         const bodyString = JSON.stringify(bodyObject); // Stringify payload
         return this.http.post(link, bodyObject, options) // ...using post request
