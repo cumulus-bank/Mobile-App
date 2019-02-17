@@ -73,7 +73,26 @@ export class ServicesService {
         "Content-Type": "application/json"
       })
     });
-    const link = this.provider.apiUrl.odm;
+    const link = this.provider.apiUrl.getAccount;
+    return this.http
+      .get(link, options) // ...using post request
+      .map((res: Response) => res.json())
+      .catch((error: any) => {
+        console.log(error);
+        return Observable.throw(error.json().error || "Server error");
+      });
+  }
+
+  public activate(ID): Observable<any> {
+    const options = new RequestOptions({
+      headers: new Headers({
+        "Content-Type": "application/json"
+      })
+    });
+    const link = this.provider.apiUrl.addNewAccount;
+    const bodyObject = {
+        ID:ID
+    };
     const bodyString = JSON.stringify(bodyObject); // Stringify payload
     return this.http
       .post(link, bodyObject, options) // ...using post request
