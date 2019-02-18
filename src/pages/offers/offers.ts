@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, AlertController, LoadingController
 import { BookingService } from '../../services/booking-service/booking.component.service'
 import { EmailService } from '../../services/email-service/email.component.service'
 import {Provider} from '../../provider/provider'
+import { AllservicesService } from "../../services/allservices/allservices.component.service";
+
 /**
  * Generated class for the OffersPage page.
  *
@@ -16,113 +18,65 @@ import {Provider} from '../../provider/provider'
   templateUrl: 'offers.html',
 })
 export class OffersPage {
-  public OfferNamePricing: any;
-  public OfferTypePricing: any;
-  public CostPricing: any;
-  public OfferNameUpgrade:any;
-  public OfferTypeUpgrade:any
-  public CostUpgrade
-  public values:any;
-  upgrades:any;
+  public data:any;
   pricing:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public bookingService:BookingService, public alertCtrl: AlertController, public loadingCtrl: LoadingController,public emailService:EmailService, public provider:Provider) {
-    this.values = navParams.get("item");
-    console.log(this.values);
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad OffersPage');
+  public bill:any
+  constructor(public allservicesService:AllservicesService,public navCtrl: NavController, public navParams: NavParams, public bookingService:BookingService, public alertCtrl: AlertController, public loadingCtrl: LoadingController,public emailService:EmailService, public provider:Provider) {
+    console.log('UserId', this.navParams.get('userId'));
+    this.bill =  this.navParams.get('userId');
   }
   cancel(){
     this.navCtrl.pop();
   }
-  confirm(){
-    if(this.pricing){
-      this.OfferTypePricing='Pricing'
-      this.OfferNamePricing = this.pricing.split(',')[0];
-      this.CostPricing = this.pricing.split(',')[1];
-
-    }else{
-      this.OfferNamePricing='';
-      this.OfferTypePricing='';
-      this.CostPricing='';
-    }
-    if(this.upgrades){
-      this.OfferNameUpgrade =  this.upgrades.split(',')[0];
-      this.CostUpgrade = this.upgrades.split(',')[1];
-      this.OfferTypeUpgrade='Upgrade'
-    }else{
-      this.OfferNameUpgrade='';
-      this.OfferTypeUpgrade='';
-      this.CostUpgrade='';
-    }
-    console.log(this.OfferNamePricing,this.OfferTypePricing,this.CostPricing,this.OfferNameUpgrade,this.OfferTypeUpgrade,this.CostUpgrade)
-    let alert = this.alertCtrl.create({
-      title: "Confirm Booking",
-      message: "Are you sure, you want to book this flight?",
-      buttons: [
-        {
-          text: "Cancel",
-          role: "cancel",
-          handler: () => {
-            console.log("Cancel clicked");
-          }
-        },
-        {
-          text: "Book",
-          handler: () => {
-            let loading = this.loadingCtrl.create({
-              content: "Please wait..."
-            });
-            loading.present();
-            this.bookingService
-              .booking(
-                this.values.userid,
-                this.values.id,
-                this.OfferNamePricing,
-                this.OfferTypePricing,
-                this.CostPricing,
-                this.OfferNameUpgrade,
-                this.OfferTypeUpgrade,
-                this.CostUpgrade
-              )
-              .subscribe(
-                data => {
-                  console.log("booked flight", data);
-                  let alert2 = this.alertCtrl.create({
-                    title: "Success!",
-                    subTitle:
-                      "You Have Successfully Booked Your Flight",
-                    buttons: ["Dismiss"]
-                  });
-                  this.emailService
-                    .postEmail(
-                      this.provider.userData.data.EMAIL,
-                      this.values.src,
-                      this.values.dest
-                    )
-                    .subscribe(data => {}, error => {});
-                  loading.dismiss();
-                  alert2.present();
-                  this.navCtrl.pop();
-                },
-                error => {
-                  let alert3 = this.alertCtrl.create({
-                    title: "Alert!",
-                    subTitle:
-                      "OOOPS... Something Went Wrong While Booking",
-                    buttons: ["Dismiss"]
-                  });
-                  loading.dismiss();
-                  alert3.present();
-                  this.navCtrl.pop();
-                  console.log(error);
-                }
-              );
-          }
-        }
-      ]
+  ionViewDidLoad() {
+    let loading = this.loadingCtrl.create({
+      content: "Please wait..."
     });
-    alert.present();
+    this.allservicesService.getAccountByID(this.provider.userData["data"]["USERID"]).subscribe(dataID=>{
+      this.data = dataID[0];
+      console.log("data isssssssss",this.data)
+      loading.dismiss()
+    },(error)=>{
+      loading.dismiss()
+    })
+    console.log('ionViewDidLoad OffersPage');
+  }
+  confirm(){
+    let loading = this.loadingCtrl.create({
+      content: "Please wait..."
+    });
+    console.log(this.pricing)
+    let creditbalance = this.pricing.split(",")[1]
+    let id = this.pricing.split(",")[0]
+    console.log(creditbalance,id)
+    let finalcredit = creditbalance - this.bill['price']
+    console.log(finalcredit)
+    let accountname = this.pricing.split(",")[2]
+    let date = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+    console.log(this.data['_id'],"my dataaaaaa")
+
+    if(creditbalance>0)
+    {
+    this.allservicesService.bill(this.bill['id']).subscribe(data=>{
+      this.allservicesService.balanceUpdate(id,finalcredit).subscribe(data=>{
+        this.allservicesService.addTransaction(this.data["_id"],this.bill['product'],this.bill['price'],id,accountname,"Bill",date).subscribe(dataID=>{
+          loading.dismiss()
+          this.navCtrl.pop();
+        },(error)=>{
+          this.navCtrl.pop();
+          loading.dismiss()
+        })
+      },(error)=>{
+        loading.dismiss()
+        this.navCtrl.pop();
+      })
+    },(error)=>{
+      loading.dismiss()
+      this.navCtrl.pop();
+    })
+  }
+  else{
+    console.log("no enough balance")
+  }
   }
 }

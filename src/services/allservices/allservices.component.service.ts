@@ -110,7 +110,7 @@ export class AllservicesService {
         "Content-Type": "application/json"
       })
     });
-    const link = this.provider.apiUrl.bill;
+    const link = this.provider.apiUrl.paybill;
     const bodyObject = {
         ID:ID
     };
@@ -124,7 +124,7 @@ export class AllservicesService {
       });
   }
 
-  public balanceUpdate(ID): Observable<any> {
+  public balanceUpdate(ID,balance): Observable<any> {
     const options = new RequestOptions({
       headers: new Headers({
         "Content-Type": "application/json"
@@ -132,7 +132,8 @@ export class AllservicesService {
     });
     const link = this.provider.apiUrl.balanceUpdate;
     const bodyObject = {
-        ID:ID
+        ID:ID,
+        balance:balance
     };
     const bodyString = JSON.stringify(bodyObject); // Stringify payload
     return this.http
@@ -151,6 +152,7 @@ export class AllservicesService {
       })
     });
     const link = this.provider.apiUrl.addTransaction;
+    console.log("my id issss", ID)
     const bodyObject = {
         ID:ID,
         Product:Product,

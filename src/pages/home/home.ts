@@ -70,6 +70,20 @@ export class HomePage {
       loading.dismiss()
     })
   }
+  doRefresh(refresher) {
+    console.log('Begin async operation');
+
+    this.allservicesService.getAccountByID(this.provider.userData["data"]["USERID"]).subscribe(dataID=>{
+      this.data = dataID[0];
+      console.log("data isssssssss",this.data)
+      refresher.complete();
+    },(error)=>{
+      refresher.complete();
+    })
+    // setTimeout(() => {
+    //   console.log('Async operation has ended');
+    // }, 2000);
+  }
   ionViewDidLoad() {
     console.log("vieww neter")
     let loading = this.loadingCtrl.create({

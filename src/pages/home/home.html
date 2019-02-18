@@ -10,6 +10,9 @@
   </ion-header>
   
   <ion-content>
+      <ion-refresher (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content></ion-refresher-content>
+        </ion-refresher>
       <ion-list>
           <ng-container *ngIf="data">
           <ion-item-sliding no-padding margin-bottom *ngFor="let card of data.Account">
