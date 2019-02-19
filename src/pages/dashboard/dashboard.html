@@ -13,6 +13,23 @@
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
+  <ng-container *ngIf="show">
+  <ion-list *ngFor="let card of show.Transaction">
+      <ion-item-divider color="light">{{card.Date}}</ion-item-divider>
+      <ion-item>
+        <ion-icon name="card" item-start></ion-icon>
+        {{card.AccountName}}
+      </ion-item>
+      <ion-item>
+          <ion-icon name="basket" item-start></ion-icon>
+          {{card.Product}}
+        </ion-item>
+      <ion-item>
+          <ion-icon name="cash" item-start></ion-icon>
+          {{card.Price}} DHS
+        </ion-item>
+    </ion-list>
+    </ng-container>
 </ion-content>
 
 <ion-footer no-border>
