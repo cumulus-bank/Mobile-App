@@ -23,10 +23,10 @@
                     <div class="msg">
                       <span [class.ON]="card.Activate===true" [class.OFF]="card.Activate===false"></span> 
                       <ng-container *ngIf="card.Activate===true">
-                      Card ON
+                      Active
                       </ng-container>
                       <ng-container *ngIf="card.Activate===false">
-                          Card OFF
+                          Inactive
                           </ng-container>
                     </div>
                   </ion-col>
