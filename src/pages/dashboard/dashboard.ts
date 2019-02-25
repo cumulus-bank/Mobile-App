@@ -34,24 +34,7 @@ export class DashboardPage {
   ) {}
 
   ionViewDidLoad() {
-    let loading = this.loadingCtrl.create({
-      content: "Loading..."
-    });
-    loading.present();
-    this.allservicesService.getAccountByID(this.provider.userData["data"]["USERID"]).subscribe(dataID=>{
-      this.show = dataID[0];
-      loading.dismiss()
-    },(error)=>{
-      loading.dismiss()
-    })
+
     
-  }
-  doRefresh(refresher) {
-    this.allservicesService.getAccountByID(this.provider.userData["data"]["USERID"]).subscribe(dataID=>{
-      this.show = dataID[0];
-      refresher.complete()
-    },(error)=>{
-      refresher.complete()
-    })
   }
 }

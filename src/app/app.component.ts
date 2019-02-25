@@ -7,7 +7,7 @@ import { LoginPage } from '../pages/login/login';
 import {TabsPage} from '../pages/tabs/tabs'
 import * as jwtDecode from 'jwt-decode';
 import {Provider} from '../provider/provider'
-
+import {DashboardPage} from '../pages/dashboard/dashboard'
 @Component({
   templateUrl: 'app.html'
 })
@@ -20,7 +20,7 @@ export class MyApp {
     ) {
     platform.ready().then(() => {
       this.key=localStorage.getItem('token');
-      this.rootPage = LoginPage
+      this.rootPage = DashboardPage
       // console.log('my key isss', this.key)
       // if(this.key){
       //   this.provider.userData = jwtDecode(this.key);
