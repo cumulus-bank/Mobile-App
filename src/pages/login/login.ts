@@ -2,6 +2,8 @@ import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { TabsPage } from "../tabs/tabs";
 import { SignupPage } from "../signup/signup";
+import { DashboardPage } from "../dashboard/dashboard";
+
 import { LoginService } from "../../services/login-service/login.component.service";
 import { AlertController, LoadingController } from "ionic-angular";
 import {Provider} from '../../provider/provider'
@@ -60,14 +62,14 @@ export class LoginPage {
           if(dataID.length===0){
             this.allservicesService.addNewAccount(this.provider.userData["data"]["USERID"]).subscribe(insertData=>{
               console.log("data sucesfully inserted",insertData)
-              this.navCtrl.push(TabsPage);
+              this.navCtrl.push(DashboardPage);
               loading.dismiss();
             },(error)=>{
 
             })
           }
           else{
-            this.navCtrl.push(TabsPage);
+            this.navCtrl.push(DashboardPage);
             loading.dismiss();
           }
         },(error)=>{

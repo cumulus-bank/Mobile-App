@@ -15,6 +15,8 @@ $tabs-background: #fff;
 $grid-padding-width: 5px !default;
 $text-color: #4c6df9;
 $background-color: #fff;
+$toolbar-background: #F7F7F7;
+
 // Named Color Variables
 // --------------------------------------------------
 // Named colors makes it easy to reuse colors on various components.
@@ -22,12 +24,13 @@ $background-color: #fff;
 // to match your app's branding. Ionic uses a Sass map of
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
-
+$header_color:#8835C3;
+$sidemenu_color:#19152C;
 $colors: (
   primary: #4c6df9,
   secondary: #5b5ef4,
   danger:#f53d3d,
-  light: #75C4FD,
+  light: #CACFD6,
   dark:  #0039a2,
   black:    #000,
   white:    #fff,
@@ -36,7 +39,9 @@ $colors: (
   twitter:    #2AAAE0,
   youtube:    #D21919,
   content: #ebb898,
-  tab: #303F9F
+  tab: #303F9F,
+  card: #5F4BB6,
+  icon: #1098F7
 );
 
 

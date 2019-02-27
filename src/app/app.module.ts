@@ -31,6 +31,7 @@ import { Geolocation } from "@ionic-native/geolocation";
 import {OdmService} from '../services/odm-service/odm.component.service'
 import {ChatPage} from '../pages/chat/chat'
 import 'leaflet-routing-machine';
+import {  NavController} from 'ionic-angular';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import 'leaflet-routing-machine';
     EmailService,
     OdmService,
     ChatService,
+    MapPage,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
