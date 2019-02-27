@@ -84,6 +84,9 @@ export class HomePage {
     //   console.log('Async operation has ended');
     // }, 2000);
   }
+  go(){
+    this.navCtrl.push(BookingPage);
+  }
   ionViewDidLoad() {
     console.log("vieww neter")
     let loading = this.loadingCtrl.create({

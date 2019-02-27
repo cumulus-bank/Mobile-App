@@ -12,6 +12,8 @@ import {ContactPage} from '../pages/contact/contact'
 import {MapPage} from '../pages/map/map'
 import {AboutPage} from '../pages/about/about'
 import { HomePage } from '../pages/home/home';
+import {BookingPage} from '../pages/booking/booking'
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -33,20 +35,12 @@ export class MyApp {
         { icon: 'cash', active: false, page: 'AboutPage' },
         { icon: 'card', active: false , page: 'HomePage'},
         { icon: 'person', active: false, page: 'ContactPage' },
-        { icon: 'call', active: false, page: 'b' }
+        { icon: 'call', active: false, page: 'b' },
+        { icon: 'log-out', active: false, page: 'LoginPage' }
       ];
     platform.ready().then(() => {
       this.key=localStorage.getItem('token');
       this.rootPage = LoginPage
-      // console.log('my key isss', this.key)
-      // if(this.key){
-      //   this.provider.userData = jwtDecode(this.key);
-      //   this.rootPage = TabsPage
-      // }
-      // else{
-      //   this.rootPage = LoginPage
-      // }
-       
       statusBar.styleDefault();
       splashScreen.hide();
       timer(1000).subscribe(() => this.showSplash = false)
@@ -67,6 +61,8 @@ export class MyApp {
     this.nav.setRoot(HomePage);
     if(page === 'ContactPage')
     this.nav.setRoot(ContactPage);
+    if(page === 'LoginPage')
+    this.nav.setRoot(LoginPage);
   }
   goto(page){
 

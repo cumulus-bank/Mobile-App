@@ -28,6 +28,10 @@ import { OffersPage } from "../offers/offers";
 })
 export class BookingPage {
   public data: any;
+  gaugeType = "arch";
+  gaugeValue = 3000;
+  gaugeLabel = "Amount";
+  gaugeAppendText = "DHS";
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -44,152 +48,13 @@ export class BookingPage {
   }
 
   ionViewDidLoad() {
-    console.log("ionViewDidLoad MapPage");
-    let tabs = document.querySelectorAll(".show-tabbar");
-    if (tabs !== null) {
-      Object.keys(tabs).map(key => {
-        tabs[key].style.display = "none";
-      });
-    }
+
   }
   ionViewWillLeave() {
-    let tabs = document.querySelectorAll(".show-tabbar");
-    if (tabs !== null) {
-      Object.keys(tabs).map(key => {
-        tabs[key].style.display = "flex";
-      });
-    }
+
   }
   cancel() {
     this.navCtrl.pop();
   }
-  confirm(id, src, dest) {
-    let actionSheet = this.actionSheetCtrl.create({
-      title: "Do You Want To Select Any Offers?",
-      buttons: [
-        {
-          text: "Show Offers",
-          handler: () => {
-            let loading = this.loadingCtrl.create({
-              content: "Please wait..."
-            });
-            loading.present();
-            this.odmService
-              .getODM(src, dest, this.provider.userData.data.TIER, 30000)
-              .subscribe(
-                data => {
-                  if (data["code"] != 404) {
-                    console.log(data);
-                    loading.dismiss();
-                    this.navCtrl.push(OffersPage, {
-                      item: {
-                        userid: this.provider.userData.data.USERID,
-                        id: id,
-                        data: data["flightBooking"]["offers"],
-                        src: src,
-                        dest: dest
-                      }
-                    });
-                  } else {
-                    let alert3 = this.alertCtrl.create({
-                      title: "Alert!",
-                      subTitle:
-                        "OOOPS... Something Went Wrong While Choosing Offers",
-                      buttons: ["Dismiss"]
-                    });
-                    loading.dismiss();
-                    alert3.present();
-                  }
-                },
-                error => {
-                  loading.dismiss();
-                }
-              );
-          }
-        },
-        {
-          text: "No Offers",
-          handler: () => {
-            let alert = this.alertCtrl.create({
-              title: "Confirm Booking",
-              message: "Are you sure, you want to book this flight?",
-              buttons: [
-                {
-                  text: "Cancel",
-                  role: "cancel",
-                  handler: () => {
-                    console.log("Cancel clicked");
-                  }
-                },
-                {
-                  text: "Book",
-                  handler: () => {
-                    let loading = this.loadingCtrl.create({
-                      content: "Please wait..."
-                    });
-                    loading.present();
-                    this.bookingService
-                      .booking(
-                        this.provider.userData.data.USERID,
-                        id,
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        ""
-                      )
-                      .subscribe(
-                        data => {
-                          console.log("booked flight", data);
-                          let alert2 = this.alertCtrl.create({
-                            title: "Success!",
-                            subTitle:
-                              "You Have Successfully Booked Your Flight",
-                            buttons: ["Dismiss"]
-                          });
-                          this.emailService
-                            .postEmail(
-                              this.provider.userData.data.EMAIL,
-                              src,
-                              dest
-                            )
-                            .subscribe(data => {}, error => {});
-                          loading.dismiss();
-                          alert2.present();
-                          this.navCtrl.pop();
-                        },
-                        error => {
-                          let alert3 = this.alertCtrl.create({
-                            title: "Alert!",
-                            subTitle:
-                              "OOOPS... Something Went Wrong While Booking",
-                            buttons: ["Dismiss"]
-                          });
-                          loading.dismiss();
-                          alert3.present();
-                          this.navCtrl.pop();
-                          console.log(error);
-                        }
-                      );
-                  }
-                }
-              ]
-            });
-            alert.present();
-            console.log("Archive clicked");
-          }
-        },
-        {
-          text: "Cancel",
-          role: "cancel",
-          handler: () => {
-            console.log("Cancel clicked");
-          }
-        }
-      ]
-    });
 
-    actionSheet.present();
-  }
 }

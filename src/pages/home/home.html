@@ -15,7 +15,7 @@
         </ion-refresher>
       <ion-list>
           <ng-container *ngIf="data">
-          <ion-item-sliding no-padding margin-bottom *ngFor="let card of data.Account">
+          <ion-item-sliding no-padding margin-bottom *ngFor="let card of data.Account" (click)="go()">
             <ion-item no-padding lines="none">
               <ion-grid [class.cardON]="card.Activate===true" [class.cardOFF]="card.Activate===false">
                 <ion-row>

@@ -32,6 +32,7 @@ import {OdmService} from '../services/odm-service/odm.component.service'
 import {ChatPage} from '../pages/chat/chat'
 import 'leaflet-routing-machine';
 import {  NavController} from 'ionic-angular';
+import { NgxGaugeModule } from 'ngx-gauge';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import {  NavController} from 'ionic-angular';
     ChatPage
   ],
   imports: [
+    NgxGaugeModule,
     NativeHttpWrapper,
     SharedModule,
     HttpModule,

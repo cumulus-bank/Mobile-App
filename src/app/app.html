@@ -4,9 +4,15 @@
 <ion-menu side="left" type="push" [content]="content" id="menu-right">
         <ion-content>
                 <ion-list no-lines>
-                        <button menuClose icon-only ion-item detail-none (click)="rightMenuClick(item,item.page)" *ngFor="let item of rightMenuItems; let i = index">
+                        <button menuClose icon-only ion-item detail-none (click)="rightMenuClick(item,item.page)"
+                                *ngFor="let item of rightMenuItems; let i = index">
                                 <div *ngIf="item.active" class="active-menu-item"></div>
-                                <ion-icon [name]="item.icon"></ion-icon>
+                                <ng-container *ngIf="item.icon==='log-out'">
+                                        <ion-icon [name]="item.icon" color=danger></ion-icon>
+                                </ng-container>
+                                <ng-container *ngIf="item.icon!=='log-out'">
+                                        <ion-icon [name]="item.icon"></ion-icon>
+                                </ng-container>
                         </button>
                 </ion-list>
         </ion-content>

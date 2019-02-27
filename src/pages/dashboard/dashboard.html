@@ -1,5 +1,5 @@
-<ion-header color="danger">
-  <ion-toolbar>
+<ion-header >
+  <ion-toolbar >
     <ion-buttons start>
       <button ion-button icon-only>
         <img src="../assets/ibm.png" alt="ibm" height="20" width="40">
@@ -10,6 +10,7 @@
 </ion-header>
 
 <ion-content class="masters">
+
       <ion-grid>
         <ion-row>
           <ion-col col-6>
@@ -19,7 +20,7 @@
             </ion-card>
           </ion-col>
           <ion-col col-6>
-            <ion-card text-center padding color="white">
+            <ion-card text-center padding color="white" (click)="navigate('map')">
               <ion-icon name="pin" color="icon"></ion-icon>
               <h2>Find ATM</h2>
             </ion-card>
@@ -27,13 +28,13 @@
         </ion-row>
         <ion-row>
           <ion-col col-6>
-            <ion-card text-center padding color="white">
+            <ion-card text-center padding color="white" (click)="navigate('bills')">
               <ion-icon name="cash" color="icon"></ion-icon>
               <h2>Bills</h2>
             </ion-card>
           </ion-col>
-          <ion-col col-6>
-            <ion-card text-center padding color="white">
+          <ion-col col-6 >
+            <ion-card text-center padding color="white" (click)="navigate('credit')">
               <ion-icon name="card" color="icon"></ion-icon>
               <h2>Credits</h2>
             </ion-card>
@@ -41,19 +42,44 @@
         </ion-row>
         <ion-row>
           <ion-col col-6>
-            <ion-card text-center padding color="white">
+            <ion-card text-center padding color="white" (click)="navigate('profile')">
               <ion-icon name="person" color="icon"></ion-icon>
               <h2>Profile</h2>
             </ion-card>
           </ion-col>
           <ion-col col-6>
-              <ion-card text-center padding color="white">
+              <ion-card text-center padding color="white" (click)="navigate('support')">
                 <ion-icon name="call" color="icon"></ion-icon>
                 <h2>Support</h2>
               </ion-card>
             </ion-col>
         </ion-row>
       </ion-grid>
+      <!-- <div>
+          <div class="cardd">
+              <div class="bank-name" title="BestBank">Cumulus Bank</div>
+              <div class="chip">
+                  <div class="side left"></div>
+                  <div class="side right"></div>
+                  <div class="vertical top"></div>
+                  <div class="vertical bottom"></div>
+              </div>
+              <div class="data">
+                  <div class="pan" title="4123 4567 8910 1112">4123 4567 8910 1112</div>
+                  <div class="first-digits">4123</div>
+                  <div class="exp-date-wrapper">
+                      <div class="left-label">EXPIRES END</div>
+                      <div class="exp-date">
+                          <div class="upper-labels">MONTH/YEAR</div>
+                          <div class="date" title="01/17">01/17</div>
+                      </div>
+                  </div>
+                  <div class="name-on-card" title="John Doe">Saif Ur Rehman</div>
+              </div>
+              <div class="lines-down"></div>
+              <div class="lines-up"></div>
+          </div>
+          </div> -->
 </ion-content>
 
 <ion-footer no-border>
