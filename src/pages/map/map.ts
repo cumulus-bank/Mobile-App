@@ -26,21 +26,21 @@ export class MapPage {
       ["CUMULUS, Sharjah Branch", 25.4111, 56.2482],
       ["CUMULUS, RAK Branch", 25.6741, 55.9804]
     ];
-
-    var map = leaflet.map("map").setView([25.2048, 55.2708], 8);
-    var mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
-    leaflet
-      .tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: "&copy; " + mapLink + " Contributors",
-        maxZoom: 18
-      })
-      .addTo(map);
-
-    for (var i = 0; i < locations.length; i++) {
-      var marker = new leaflet.marker([locations[i][1], locations[i][2]])
-        .bindPopup(locations[i][0])
-        .addTo(map);
-    }
+  
+          var map = leaflet.map('map').setView([24.4539, 54.3773], 13);
+          var mapLink = 
+              '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+          leaflet.tileLayer(
+              'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+              attribution: '&copy; ' + mapLink + ' Contributors',
+              maxZoom: 18,
+              }).addTo(map);
+  
+      for (var i = 0; i < locations.length; i++) {
+        var marker = new leaflet.marker([locations[i][1],locations[i][2]])
+          .bindPopup(locations[i][0])
+          .addTo(map);
+      }
   }
   ionViewDidLoad() {
     this.loadmap();
