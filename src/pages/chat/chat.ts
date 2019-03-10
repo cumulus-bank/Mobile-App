@@ -69,7 +69,7 @@ export class ChatPage {
       this.chatService.call(this.temp, this.sessionid).subscribe(
         data => {
           this.watsontype = false;
-          if((data["response"]["output"]["generic"][0]["text"].charAt(0)!=='_'))
+          if((data["response"]["output"]["generic"][0]["text"]!=='bills'))
           {
             this.message.push({
             user: "watson",
@@ -87,55 +87,6 @@ export class ChatPage {
           );
           this.bookinginfo = data["response"]["output"]["generic"][0]["text"].split(',')
           console.log(this.bookinginfo)
-          this.Year = Number(this.bookinginfo[3].split("-")[0]);
-          this.Year = String(this.Year);
-          this.Month = Number(this.bookinginfo[3].split("-")[1]);
-          this.Month = String(this.Month);
-          this.DayOfMonth = Number(this.bookinginfo[3].split("-")[2]);
-          this.DayOfMonth = String(this.DayOfMonth);
-          console.log(this.Year,this.Month,this.DayOfMonth)
-          let loading = this.loadingCtrl.create({
-            content: "Please wait..."
-          });
-          loading.present();
-            this.listingService
-              .listFlights(
-                this.Year,
-                this.Month,
-                this.DayOfMonth,
-                this.bookinginfo[1],
-                this.bookinginfo[2]
-              )
-              .subscribe(
-                data => {
-                  if(data.length){
-                  console.log("data", data);
-                  loading.dismiss()
-                  this.navCtrl.push(BookingPage, {
-                    item: data
-                  });
-                }
-                else{
-                  let alert = this.alertCtrl.create({
-                    title: "Alert!",
-                    subTitle: "OOOOPS... No flights found!",
-                    buttons: ["Dismiss"]
-                  });
-                  loading.dismiss();
-                  alert.present();
-                }
-                },
-                error => {
-                  let alert = this.alertCtrl.create({
-                    title: "Alert!",
-                    subTitle: "OOOOPS... Something Went Wrong",
-                    buttons: ["Dismiss"]
-                  });
-                  loading.dismiss();
-                  alert.present();
-                  console.log(error);
-                }
-              );
         }
         },
         error => {

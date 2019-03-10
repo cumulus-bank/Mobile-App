@@ -30,7 +30,9 @@ export class Provider {
       balanceUpdate: 'http://' +this.url + "/accountsvc/balanceUpdate",
       addTransaction: 'http://' +this.url + "/accountsvc/transaction",
       deleteAccount: 'http://' +this.url + "/accountsvc/listAccount",
-      getsessionid:'http://' +this.url + "/aisvc/session"
+      getsessionid:'http://' +this.url + "/aisvc/session",
+      watsoncall: 'http://' +this.url + "/aisvc/watson",
+      sms: 'http://' +this.url + "/smssvc/send"
     };
   }
 }

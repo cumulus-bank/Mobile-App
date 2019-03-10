@@ -19,6 +19,33 @@ export class AllservicesService {
     const link = this.provider.apiUrl.addNewAccount;
     const bodyObject = {
       ID: ID,
+      CurrentAccount:[
+        {
+          Balance: 10000,
+          CuurentSpending:10000,
+          AccountName: "Current Account"
+        },
+        {
+          Balance: 30000,
+          CuurentSpending:30000,
+          AccountName: "Saving Account"
+        },
+        {
+          Balance: 90000,
+          CuurentSpending:90000,
+          AccountName: "Loan Account"
+        },
+        {
+          Balance: 900000,
+          CuurentSpending:900000,
+          AccountName: "Mortgage Account"
+        },
+        {
+          Balance: 3000,
+          CuurentSpending:3000,
+          AccountName: "Charity Account"
+        }
+      ],
       Billing: [
         {
           Product: "Home Entertainment",
@@ -44,15 +71,18 @@ export class AllservicesService {
         {
           Activate: false,
           Balance: 0,
+          CuurentSpending: 0,
           AccountName: "Visa Card"
         },
         {
           Activate: false,
+          CuurentSpending:0,
           Balance: 0,
           AccountName: "American Express"
         },
         {
           Activate: false,
+          CuurentSpending: 0,
           Balance: 0,
           AccountName: "Master Card"
         }
@@ -93,6 +123,27 @@ export class AllservicesService {
     const link = this.provider.apiUrl.activate;
     const bodyObject = {
         ID:ID
+    };
+    const bodyString = JSON.stringify(bodyObject); // Stringify payload
+    return this.http
+      .post(link, bodyObject, options) // ...using post request
+      .map((res: Response) => res.json())
+      .catch((error: any) => {
+        console.log(error);
+        return Observable.throw(error.json().error || "Server error");
+      });
+  }
+
+  public sms(msg, number): Observable<any> {
+    const options = new RequestOptions({
+      headers: new Headers({
+        "Content-Type": "application/json"
+      })
+    });
+    const link = this.provider.apiUrl.sms;
+    const bodyObject = {
+      message:msg,
+      reciever : number
     };
     const bodyString = JSON.stringify(bodyObject); // Stringify payload
     return this.http
@@ -172,6 +223,7 @@ export class AllservicesService {
         return Observable.throw(error.json().error || "Server error");
       });
   }
+
 
   public getAccountById(ID): Observable<any> {
     const options = new RequestOptions({

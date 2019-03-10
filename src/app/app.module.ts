@@ -4,6 +4,8 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import {HttpModule} from '@angular/http';
 import { AboutPage } from '../pages/about/about';
+import { ShopPage } from '../pages/shop/shop';
+
 import { LoginPage } from '../pages/login/login';
 import { OffersPage } from '../pages/offers/offers';
 import { SignupPage } from '../pages/signup/signup';
@@ -33,9 +35,11 @@ import {ChatPage} from '../pages/chat/chat'
 import 'leaflet-routing-machine';
 import {  NavController} from 'ionic-angular';
 import { NgxGaugeModule } from 'ngx-gauge';
+import { CarouselComponent } from '../components/carousel/carousel';
 
 @NgModule({
   declarations: [
+    CarouselComponent,
     MyApp,
     AboutPage,
     ContactPage,
@@ -47,7 +51,8 @@ import { NgxGaugeModule } from 'ngx-gauge';
     DashboardPage,
     MapPage,
     OffersPage,
-    ChatPage
+    ChatPage,
+    ShopPage
   ],
   imports: [
     NgxGaugeModule,
@@ -70,7 +75,8 @@ import { NgxGaugeModule } from 'ngx-gauge';
     DashboardPage,
     MapPage,
     OffersPage,
-    ChatPage
+    ChatPage,
+    ShopPage
   ],
   providers: [
     StatusBar,

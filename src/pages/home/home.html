@@ -15,14 +15,14 @@
         </ion-refresher>
       <ion-list>
           <ng-container *ngIf="data">
-          <ion-item-sliding no-padding margin-bottom *ngFor="let card of data.Account" (click)="go()">
+          <ion-item-sliding no-padding margin-bottom *ngFor="let card of data.Account">
             <ion-item no-padding lines="none">
               <ion-grid [class.cardON]="card.Activate===true" [class.cardOFF]="card.Activate===false">
                 <ion-row>
                   <ion-col class="state">
-                    <div class="msg">
+                    <div class="msg" (click)="go(card.AccountName, card.Balance)">
                       <span [class.ON]="card.Activate===true" [class.OFF]="card.Activate===false"></span> 
-                      <ng-container *ngIf="card.Activate===true">
+                      <ng-container *ngIf="card.Activate===true" >
                       Active
                       </ng-container>
                       <ng-container *ngIf="card.Activate===false">

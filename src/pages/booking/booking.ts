@@ -28,8 +28,10 @@ import { OffersPage } from "../offers/offers";
 })
 export class BookingPage {
   public data: any;
+  public tx:any = null;
+  public cardtype:any;
   gaugeType = "arch";
-  gaugeValue = 3000;
+  gaugeValue = 0;
   gaugeLabel = "Amount";
   gaugeAppendText = "DHS";
   constructor(
@@ -43,7 +45,10 @@ export class BookingPage {
     public actionSheetCtrl: ActionSheetController,
     public odmService: OdmService
   ) {
-    this.data = navParams.get("item");
+    this.data = navParams.get("data");
+    this.gaugeValue = 10000 - this.data['balance'];
+    this.tx = this.data['tx']
+    this.cardtype = this.data['acc']
     console.log("this is data", this.data);
   }
 

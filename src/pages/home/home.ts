@@ -84,8 +84,13 @@ export class HomePage {
     //   console.log('Async operation has ended');
     // }, 2000);
   }
-  go(){
-    this.navCtrl.push(BookingPage);
+  go(acc,balance){
+    console.log("heree",acc,balance,this.data['Transaction']);
+    this.navCtrl.push(BookingPage,{data:{
+      acc:acc,
+      balance:balance,
+      tx:this.data['Transaction']
+    }});
   }
   ionViewDidLoad() {
     console.log("vieww neter")

@@ -18,76 +18,46 @@
 
   <ion-row>
     <ion-col text-center>
-      <ngx-gauge [type]="gaugeType" [value]="gaugeValue" [label]="gaugeLabel" [min]=0 [max]=9000 [append]="gaugeAppendText">
+      <ngx-gauge [type]="gaugeType" [value]="gaugeValue" [label]="gaugeLabel" [min]=0 [max]=10000 [append]="gaugeAppendText">
       </ngx-gauge>
     </ion-col>
   </ion-row>
-  <ion-list no-border>
+  <ng-container *ngIf="tx">
+    <div *ngFor="let card of tx">
+  <ion-list no-border *ngIf="card.AccountName === cardtype ">
 
-      <ion-list-header>
-        02/01/2019
-      </ion-list-header>
-  
-      <ion-item>
-        <ion-icon name='cart' item-start color="icon"></ion-icon>
-        Product
-        <ion-note item-end>
-        Home Entertainment
-        </ion-note>
-      </ion-item>
-  
-      <ion-item>
-          <ion-icon name='cash' item-start color="icon"></ion-icon>
-          Price
-          <ion-note item-end>
-          900 AED
-          </ion-note>
-        </ion-item>
-  
-      <ion-item>
-        <ion-icon name='information-circle' item-start color="icon"></ion-icon>
-        Type
-        <ion-note item-end>
-        Bills
-        </ion-note>
-      </ion-item>
+    <ion-list-header>
+      {{card.Date}}
+    </ion-list-header>
 
-  
-    </ion-list>
-  
+    <ion-item>
+      <ion-icon name='cart' item-start color="icon"></ion-icon>
+      Product
+      <ion-note item-end>
+        {{card.Product}}
+      </ion-note>
+    </ion-item>
 
-    <ion-list no-border>
+    <ion-item>
+      <ion-icon name='cash' item-start color="icon"></ion-icon>
+      Price
+      <ion-note item-end>
+        {{card.Price}} AED
+      </ion-note>
+    </ion-item>
 
-        <ion-list-header>
-          02/06/2019
-        </ion-list-header>
-    
-        <ion-item>
-          <ion-icon name='cart' item-start color="icon"></ion-icon>
-          Product
-          <ion-note item-end>
-          Phone
-          </ion-note>
-        </ion-item>
-    
-        <ion-item>
-            <ion-icon name='cash' item-start color="icon"></ion-icon>
-            Price
-            <ion-note item-end>
-            100 AED
-            </ion-note>
-          </ion-item>
-    
-        <ion-item>
-          <ion-icon name='information-circle' item-start color="icon"></ion-icon>
-          Type
-          <ion-note item-end>
-          Bills
-          </ion-note>
-        </ion-item>
-  
-    
-      </ion-list>
+    <ion-item>
+      <ion-icon name='information-circle' item-start color="icon"></ion-icon>
+      Type
+      <ion-note item-end>
+        {{card.Type}}
+      </ion-note>
+    </ion-item>
+
+
+  </ion-list>
+  </div>
+  </ng-container>
 
 </ion-content>
 <ion-footer no-border>

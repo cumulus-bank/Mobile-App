@@ -13,6 +13,8 @@ import {MapPage} from '../pages/map/map'
 import {AboutPage} from '../pages/about/about'
 import { HomePage } from '../pages/home/home';
 import {BookingPage} from '../pages/booking/booking'
+import { ShopPage } from '../pages/shop/shop';
+import { ChatPage } from '../pages/chat/chat';
 
 @Component({
   templateUrl: 'app.html'
@@ -30,12 +32,12 @@ export class MyApp {
     ) {
       this.rightMenuItems = [
         { icon: 'home', active: true, page: 'DashboardPage' },
-        { icon: 'heart', active: false, page: 'b' },
+        { icon: 'heart', active: false, page: 'ShopPage' },
         { icon: 'pin', active: false , page: 'MapPage'},
         { icon: 'cash', active: false, page: 'AboutPage' },
         { icon: 'card', active: false , page: 'HomePage'},
         { icon: 'person', active: false, page: 'ContactPage' },
-        { icon: 'call', active: false, page: 'b' },
+        { icon: 'chatboxes', active: false, page: 'ChatPage' },
         { icon: 'log-out', active: false, page: 'LoginPage' }
       ];
     platform.ready().then(() => {
@@ -50,7 +52,10 @@ export class MyApp {
     this.rightMenuItems.map(menuItem => menuItem.active = false);
     item.active = true;
     console.log('page to navigate isss',page)
-    // this.rootPage = page
+    if(page==='ChatPage')
+    this.nav.setRoot(ChatPage);
+    if(page==='ShopPage')
+    this.nav.setRoot(ShopPage);
     if(page==='MapPage')
     this.nav.setRoot(MapPage);
     if(page === 'AboutPage')

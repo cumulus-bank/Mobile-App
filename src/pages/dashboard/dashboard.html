@@ -10,11 +10,11 @@
 </ion-header>
 
 <ion-content class="masters">
-
+  <carousel [slides]="slides"  (selectSlide)="selectItem($event);"></carousel>
       <ion-grid>
         <ion-row>
           <ion-col col-6>
-            <ion-card text-center padding color="white">
+            <ion-card text-center padding color="white" (click)="navigate('shop')">
               <ion-icon name="heart" color="icon"></ion-icon>
               <h2>Offers</h2>
             </ion-card>
@@ -36,7 +36,7 @@
           <ion-col col-6 >
             <ion-card text-center padding color="white" (click)="navigate('credit')">
               <ion-icon name="card" color="icon"></ion-icon>
-              <h2>Credits</h2>
+              <h2>Cards</h2>
             </ion-card>
           </ion-col>
         </ion-row>
@@ -49,8 +49,8 @@
           </ion-col>
           <ion-col col-6>
               <ion-card text-center padding color="white" (click)="navigate('support')">
-                <ion-icon name="call" color="icon"></ion-icon>
-                <h2>Support</h2>
+                <ion-icon name="chatboxes" color="icon"></ion-icon>
+                <h2>Chatbot</h2>
               </ion-card>
             </ion-col>
         </ion-row>
