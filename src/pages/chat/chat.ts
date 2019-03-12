@@ -76,6 +76,13 @@ export class ChatPage {
             message: data["response"]["output"]["generic"][0]["text"]
           });
         }
+        if((data["response"]["output"]["generic"][0]["text"]==='bills'))
+        {
+          this.message.push({
+          user: "watson",
+          message:'No! You dont have any pending bills! :)'
+        });
+      }
         else{
           this.chatService.getsessionid().subscribe(
             data => {
