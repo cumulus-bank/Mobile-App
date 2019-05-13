@@ -54,6 +54,7 @@ export class ShopPage {
                 type: 'amex',
                 offers: americandata['creditCard']['cardOffers']
               })
+              console.log(this.odm)
             } , error =>{
               console.log(error)
             })
