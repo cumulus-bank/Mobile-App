@@ -45,6 +45,66 @@
         </button>
       </ion-item>
       </ion-card>
+
+      <ion-item-divider color="light">Master Card Offers</ion-item-divider>
+      <ion-card class="adv-map" *ngFor="let item of masterOffers.offers">
+        <ion-item>
+          <ion-icon color="subtle" large item-start name='information-circle'></ion-icon>
+          <h2>Catagory</h2>
+          <p>{{item.category}}</p>
+        </ion-item>
+        <ion-item>
+          <ion-icon color="subtle" large item-start name='flower'></ion-icon>
+          <h2>Partner</h2>
+          <p>{{item.offerPartner}}</p>
+        </ion-item>
+        <ion-item>
+          <ion-icon color="subtle" large item-start name='flash'></ion-icon>
+          <h2>Offer</h2>
+          <p> {{item.offerDesc}}</p>
+        </ion-item>
+        <ion-item>
+          <ion-icon color="subtle" large item-start name='flag'></ion-icon>
+          <h2>Type</h2>
+          <p>{{item.offerType}}</p>
+        </ion-item>
+        <ion-item actions>
+          <button ion-button color="secondary" clear item-end icon-start>
+            <ion-icon name='checkmark'></ion-icon>
+            BUY
+          </button>
+        </ion-item>
+        </ion-card>
+
+        <ion-item-divider color="light">AMEX Card Offers</ion-item-divider>
+        <ion-card class="adv-map" *ngFor="let item of amexOffers.offers">
+          <ion-item>
+            <ion-icon color="subtle" large item-start name='information-circle'></ion-icon>
+            <h2>Catagory</h2>
+            <p>{{item.category}}</p>
+          </ion-item>
+          <ion-item>
+            <ion-icon color="subtle" large item-start name='flower'></ion-icon>
+            <h2>Partner</h2>
+            <p>{{item.offerPartner}}</p>
+          </ion-item>
+          <ion-item>
+            <ion-icon color="subtle" large item-start name='flash'></ion-icon>
+            <h2>Offer</h2>
+            <p> {{item.offerDesc}}</p>
+          </ion-item>
+          <ion-item>
+            <ion-icon color="subtle" large item-start name='flag'></ion-icon>
+            <h2>Type</h2>
+            <p>{{item.offerType}}</p>
+          </ion-item>
+          <ion-item actions>
+            <button ion-button color="secondary" clear item-end icon-start>
+              <ion-icon name='checkmark'></ion-icon>
+              BUY
+            </button>
+          </ion-item>
+          </ion-card>
   
   </ion-content>
 
