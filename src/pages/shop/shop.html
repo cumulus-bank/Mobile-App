@@ -17,26 +17,26 @@
 
   <ion-content  class="cards-bg">
     <ion-item-divider color="light">Visa Card Offers</ion-item-divider>
-    <ion-card class="adv-map">
+    <ion-card class="adv-map" *ngFor="let item of visaOffers.offers">
       <ion-item>
         <ion-icon color="subtle" large item-start name='information-circle'></ion-icon>
         <h2>Catagory</h2>
-        <p>Hotel</p>
+        <p>{{item.category}}</p>
       </ion-item>
       <ion-item>
         <ion-icon color="subtle" large item-start name='flower'></ion-icon>
         <h2>Partner</h2>
-        <p>Hilton</p>
+        <p>{{item.offerPartner}}</p>
       </ion-item>
       <ion-item>
         <ion-icon color="subtle" large item-start name='flash'></ion-icon>
         <h2>Offer</h2>
-        <p> Buy oner get one free</p>
+        <p> {{item.offerDesc}}</p>
       </ion-item>
       <ion-item>
         <ion-icon color="subtle" large item-start name='flag'></ion-icon>
         <h2>Type</h2>
-        <p>Discount</p>
+        <p>{{item.offerType}}</p>
       </ion-item>
       <ion-item actions>
         <button ion-button color="secondary" clear item-end icon-start>
