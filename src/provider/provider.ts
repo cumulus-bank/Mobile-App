@@ -32,7 +32,8 @@ export class Provider {
       deleteAccount: 'http://' +this.url + "/accountsvc/listAccount",
       getsessionid:'http://' +this.url + "/aisvc/session",
       watsoncall: 'http://' +this.url + "/aisvc/watson",
-      sms: 'http://' +this.url + "/smssvc/send"
+      sms: 'http://' +this.url + "/smssvc/send",
+      odm: 'http://'+ this.url+ '/DecisionService/rest/BankingDemo/1.0/getCreditCardOffers/1.0'
     };
   }
 }
