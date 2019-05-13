@@ -18,6 +18,9 @@ import {Provider} from '../../provider/provider'
 export class ShopPage {
 
   public odm: any = [];
+  public visaOffers:any = [];
+  public masterOffers:any = [];
+  public amexOffers: any = [];
   constructor(public navCtrl: NavController, public navParams: NavParams, public allservicesService: AllservicesService,
     public provider: Provider  ) {
   }
@@ -29,10 +32,12 @@ export class ShopPage {
         if(element['Activate']){
           if(element['AccountName']==='Visa Card'){
             this.allservicesService.odm('Visa','Gold',10517320,'','',[]).subscribe( visadata =>{
-              this.odm.push({
+              this.visaOffers.push({
                 type: 'visa',
                 offers: visadata['creditCard']['cardOffers']
               })
+              this.visaOffers = this.visaOffers[0]
+              console.log(this.visaOffers)
 
             } , error =>{
               console.log(error)
@@ -40,21 +45,23 @@ export class ShopPage {
           }
             if(element['AccountName']==='Master Card'){
               this.allservicesService.odm('MasterCard','World',10517320,'','',[]).subscribe( masterdata =>{
-                this.odm.push({
+                this.masterOffers.push({
                   type: 'master',
                   offers: masterdata['creditCard']['cardOffers']
                 })
+                this.masterOffers = this.masterOffers[0];
               } , error =>{
                 console.log(error)
               })
           }
           if(element['AccountName']==='American Express'){
             this.allservicesService.odm('AMEX','Preferred',10517320,'','',[]).subscribe( americandata =>{
-              this.odm.push({
+              this.amexOffers.push({
                 type: 'amex',
                 offers: americandata['creditCard']['cardOffers']
               })
-              console.log(this.odm)
+              this.amexOffers = this.amexOffers[0];
+              console.log(this.amexOffers)
             } , error =>{
               console.log(error)
             })
