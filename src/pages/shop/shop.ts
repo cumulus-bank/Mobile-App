@@ -25,7 +25,10 @@ export class ShopPage {
     public provider: Provider  ) {
   }
 
-  ionViewDidLoad() {
+  call(){
+    this.masterOffers = [];
+    this.visaOffers = [];
+    this.amexOffers = [];
     this.allservicesService.getAccountByID(this.provider.userData["UserID"]).subscribe( data => {
       data[0]['Account'].forEach(element => {
         console.log(element)
@@ -71,6 +74,19 @@ export class ShopPage {
     }, error => {
 
     })
+  }
+  ionViewDidLoad() {
+    this.call();
+  }
+
+  doRefresh(refresher) {
+    this.call();
+    console.log('Begin async operation', refresher);
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
   }
 
 }

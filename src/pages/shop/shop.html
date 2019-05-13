@@ -16,6 +16,9 @@
 </ion-header>
 
   <ion-content  class="cards-bg">
+      <ion-refresher (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content></ion-refresher-content>
+        </ion-refresher>
     <ion-item-divider color="light">Visa Card Offers</ion-item-divider>
     <ion-card class="adv-map" *ngFor="let item of visaOffers.offers">
       <ion-item>
