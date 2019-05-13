@@ -31,7 +31,9 @@ export class DashboardPage {
   gaugeValue = 900;
   gaugeLabel = "Amount";
   gaugeAppendText = "DHS";
-  private data: any;
+  public showCoursel : boolean = false;
+  public loginData:any;
+  public data: any = [];
   private slides: any = [];
   private start: number = 0;
   private end: number = 4;
@@ -39,45 +41,33 @@ export class DashboardPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public dashboardService: DashboardService,
-    private geolocation: Geolocation,
     public loadingCtrl: LoadingController,
     public allservicesService: AllservicesService,
     public provider: Provider,
 
-  ) {
-    this.data = [
-      {
-          id: 1,
-          title: 'Current Account',
-          country: '25,000 DHS',
-      },
-      {
-          id: 2,
-          title: 'Saving Account',
-          country: '35,000 DHS',
-
-      },
-      {
-          id: 3,
-          title: 'Loan Account',
-          country: '10,000 DHS',
-      },
-      {
-          id: 4,
-          title: 'Mortgage Account',
-          country: '45,000 DHS',
-      },
-      {
-          id: 5,
-          title: 'Charity Account',
-          country: '5,000 DHS',
-      },
-  ];
-  }
+  ) {}
 
   ionViewDidLoad() {
-
-    this.getCurrentSlides();
+      this.allservicesService.getAccountByID(this.provider.userData["UserID"]).subscribe( data => {
+        this.loginData = data[0]['CurrentAccount']
+        console.log('logindata',this.loginData);
+        let tempdata = []
+        this.loginData.forEach(function(value,i){
+            console.log(value,i)
+            console.log('data isss',data);
+            tempdata.push({
+                    'id': i,
+                    'title': value['AccountName'],
+                    'account': value['CuurentSpending']
+                })
+        });
+        this.data = tempdata;
+        this.showCoursel = true;
+        this.getCurrentSlides();
+      } , error => {
+        console.log(error)
+      })
+    //   this.getCurrentSlides();
   }
   navigate(page){
     if(page==='shop')

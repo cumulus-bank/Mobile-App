@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content class="masters">
-  <carousel [slides]="slides"  (selectSlide)="selectItem($event);"></carousel>
+  <carousel [slides]="slides"  (selectSlide)="selectItem($event);" *ngIf="showCoursel"></carousel>
       <ion-grid>
         <ion-row>
           <ion-col col-6>

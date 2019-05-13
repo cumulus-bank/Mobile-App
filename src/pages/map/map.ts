@@ -27,7 +27,7 @@ export class MapPage {
       ["CUMULUS, RAK Branch", 25.6741, 55.9804]
     ];
   
-          var map = leaflet.map('map').setView([24.4539, 54.3773], 13);
+          var map = leaflet.map('map').setView([24.4539, 54.3773], 7);
           var mapLink = 
               '<a href="http://openstreetmap.org">OpenStreetMap</a>';
           leaflet.tileLayer(

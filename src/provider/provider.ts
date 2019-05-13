@@ -5,7 +5,7 @@ export class Provider {
   public userData: any = null;
   public token: any = null;
   public rawData: any = null;
-  public url: any = "192.168.22.10:31380";
+  public url: any = "9.30.160.236:31380";
   public abi: any;
   constructor() {
     this.apiUrl = {
