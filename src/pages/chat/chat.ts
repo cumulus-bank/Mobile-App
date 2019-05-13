@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { ChatService } from "../../services/chat-service/chat.component.service";
 import { ListingService } from "../../services/listing-schedule-service/listing.component.service";
 import { BookingPage } from "../booking/booking";
+import { AllservicesService } from "../../services/allservices/allservices.component.service";
+import {Provider} from '../../provider/provider'
 
 /**
  * Generated class for the ChatPage page.
@@ -11,6 +13,7 @@ import { BookingPage } from "../booking/booking";
  * Ionic pages and navigation.
  */
 import { AlertController, LoadingController } from "ionic-angular";
+import { templateSourceUrl } from "@angular/compiler";
 
 @IonicPage()
 @Component({
@@ -32,9 +35,10 @@ export class ChatPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public chatService: ChatService,
-    private alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
-    public listingService: ListingService
+    public listingService: ListingService,
+    public allservicesService: AllservicesService,
+    public provider: Provider
   ) {
     if (!this.sessionid) {
       this.chatService.getsessionid().subscribe(
@@ -68,9 +72,10 @@ export class ChatPage {
       this.watsontype = true;
       this.chatService.call(this.temp, this.sessionid).subscribe(
         data => {
-          this.watsontype = false;
+          
           if((data["response"]["output"]["generic"][0]["text"]!=='bills'))
           {
+            this.watsontype = false;
             this.message.push({
             user: "watson",
             message: data["response"]["output"]["generic"][0]["text"]
@@ -78,10 +83,35 @@ export class ChatPage {
         }
         if((data["response"]["output"]["generic"][0]["text"]==='bills'))
         {
-          this.message.push({
-          user: "watson",
-          message:'No! You dont have any pending bills! :)'
-        });
+          let temp = []
+          this.allservicesService.getAccountByID(this.provider.userData["UserID"]).subscribe( data => {
+            console.log(data);
+            data[0]['Billing'].forEach(element => {
+              if(!element['Payed']){
+                temp.push(element['Product'])
+                console.log('temp',temp)
+              }
+            });
+            if(temp.length === 0)
+            {
+              this.watsontype = false;
+            this.message.push({
+              user: "watson",
+              message:'No! You dont have any pending bills! :)'
+            });
+          }
+          else{
+            this.watsontype = false;
+            this.message.push({
+              user: "watson",
+              message:'You need to pay your ' + temp.join(' , ') + 'bills'
+            });
+          }
+          } , error => {
+            this.watsontype = false;
+
+          })
+
       }
         else{
           this.chatService.getsessionid().subscribe(
