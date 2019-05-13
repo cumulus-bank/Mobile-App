@@ -33,7 +33,7 @@ export class Provider {
       getsessionid:'http://' +this.url + "/aisvc/session",
       watsoncall: 'http://' +this.url + "/aisvc/watson",
       sms: 'http://' +this.url + "/smssvc/send",
-      odm: 'http://'+ this.url+ '/DecisionService/rest/BankingDemo/1.0/getCreditCardOffers/1.0'
+      odm:'http://' +this.url + "/odmbanksvc/odm",
     };
   }
 }
