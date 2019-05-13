@@ -59,7 +59,7 @@ export class HomePage {
       content: "Please wait..."
     });
     this.allservicesService.activate(ID).subscribe(data=>{
-      this.allservicesService.getAccountByID(this.provider.userData["data"]["USERID"]).subscribe(dataID=>{
+      this.allservicesService.getAccountByID(this.provider.userData["UserID"]).subscribe(dataID=>{
         this.data = dataID[0];
         console.log("data newww",this.data)
         loading.dismiss()
@@ -73,7 +73,7 @@ export class HomePage {
   doRefresh(refresher) {
     console.log('Begin async operation');
 
-    this.allservicesService.getAccountByID(this.provider.userData["data"]["USERID"]).subscribe(dataID=>{
+    this.allservicesService.getAccountByID(this.provider.userData["UserID"]).subscribe(dataID=>{
       this.data = dataID[0];
       console.log("data isssssssss",this.data)
       refresher.complete();
@@ -97,7 +97,7 @@ export class HomePage {
     let loading = this.loadingCtrl.create({
       content: "Please wait..."
     });
-    this.allservicesService.getAccountByID(this.provider.userData["data"]["USERID"]).subscribe(dataID=>{
+    this.allservicesService.getAccountByID(this.provider.userData["UserID"]).subscribe(dataID=>{
       this.data = dataID[0];
       console.log("data isssssssss",this.data)
       loading.dismiss()

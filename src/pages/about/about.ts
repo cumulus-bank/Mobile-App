@@ -28,7 +28,7 @@ export class AboutPage {
     let loading = this.loadingCtrl.create({
       content: "Please wait..."
     });
-    this.allservicesService.getAccountByID(this.provider.userData["data"]["USERID"]).subscribe(dataID=>{
+    this.allservicesService.getAccountByID(this.provider.userData["UserID"]).subscribe(dataID=>{
       this.show = dataID[0];
       console.log("data isssssssss",this.show)
       loading.dismiss()
@@ -42,7 +42,7 @@ pay(id,price,product){
 }
   doRefresh(refresher) {
 
-    this.allservicesService.getAccountByID(this.provider.userData["data"]["USERID"]).subscribe(dataID=>{
+    this.allservicesService.getAccountByID(this.provider.userData["UserID"]).subscribe(dataID=>{
       this.show = dataID[0];
       console.log("data isssssssss",this.show)
       refresher.complete();

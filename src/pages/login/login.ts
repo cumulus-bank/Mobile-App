@@ -56,11 +56,12 @@ export class LoginPage {
         this.provider.token = data['token'];
         localStorage.setItem('token', this.provider.token);
         this.provider.userData = jwtDecode( data['token']);
+        this.provider.userData = this.provider.userData["data"][0]
         console.log(this.provider.userData)
-        this.allservicesService.getAccountByID(this.provider.userData["data"]["USERID"]).subscribe(dataID=>{
+        this.allservicesService.getAccountByID(this.provider.userData["UserID"]).subscribe(dataID=>{
           console.log("data isss",dataID);
           if(dataID.length===0){
-            this.allservicesService.addNewAccount(this.provider.userData["data"]["USERID"]).subscribe(insertData=>{
+            this.allservicesService.addNewAccount(this.provider.userData["UserID"]).subscribe(insertData=>{
               console.log("data sucesfully inserted",insertData)
               this.navCtrl.push(DashboardPage);
               loading.dismiss();

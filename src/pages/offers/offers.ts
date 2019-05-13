@@ -33,7 +33,7 @@ export class OffersPage {
     let loading = this.loadingCtrl.create({
       content: "Please wait..."
     });
-    this.allservicesService.getAccountByID(this.provider.userData["data"]["USERID"]).subscribe(dataID=>{
+    this.allservicesService.getAccountByID(this.provider.userData["UserID"]).subscribe(dataID=>{
       this.data = dataID[0];
       console.log("data isssssssss",this.data)
       loading.dismiss()
@@ -62,16 +62,17 @@ export class OffersPage {
     this.allservicesService.bill(this.bill['id']).subscribe(data=>{
       this.allservicesService.balanceUpdate(id,finalcredit).subscribe(data=>{
         this.allservicesService.addTransaction(this.data["_id"],this.bill['product'],this.bill['price'],id,accountname,"Bill",date).subscribe(dataID=>{
-          this.allservicesService.sms('Your '+ this.bill['product']+' bill has been payed. Current '+accountname+' balance is '+ this.finalcredit,'+971509786313').subscribe(sms=>{
-            console.log(sms);
-            loading.dismiss()
-            this.navCtrl.pop();
-          },(error)=>{
-            console.log(error)
-            loading.dismiss()
-            this.navCtrl.pop();
-          })
-
+          loading.dismiss()
+          this.navCtrl.pop();
+          // this.allservicesService.sms('Your '+ this.bill['product']+' bill has been payed. Current '+accountname+' balance is '+ this.finalcredit,'+971509786313').subscribe(sms=>{
+          //   console.log(sms);
+          //   loading.dismiss()
+          //   this.navCtrl.pop();
+          // },(error)=>{
+          //   console.log(error)
+          //   loading.dismiss()
+          //   this.navCtrl.pop();
+          // })
         },(error)=>{
           console.log(error)
           this.navCtrl.pop();
