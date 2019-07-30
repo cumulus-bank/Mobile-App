@@ -60,3 +60,7 @@ buildconfig:
   imagename: "ionic:latest"
   secret1: "secretyu"
   secret2: "secretyu"
+
+imagestream:
+  name:  ionic
+  label: ionic
