@@ -29,7 +29,7 @@
       "PACKAGE_NAME": "io.ionic.starter"
     },
     "ionic-plugin-keyboard": {
-      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+      "PACKAGE_NAME": "io.ionic.starter"
     }
   },
   "dependent_plugins": {

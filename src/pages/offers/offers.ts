@@ -63,16 +63,15 @@ export class OffersPage {
       this.allservicesService.balanceUpdate(id,finalcredit).subscribe(data=>{
         this.allservicesService.addTransaction(this.data["_id"],this.bill['product'],this.bill['price'],id,accountname,"Bill",date).subscribe(dataID=>{
           loading.dismiss()
-          this.navCtrl.pop();
-          // this.allservicesService.sms('Your '+ this.bill['product']+' bill has been payed. Current '+accountname+' balance is '+ this.finalcredit,'+971509786313').subscribe(sms=>{
-          //   console.log(sms);
-          //   loading.dismiss()
-          //   this.navCtrl.pop();
-          // },(error)=>{
-          //   console.log(error)
-          //   loading.dismiss()
-          //   this.navCtrl.pop();
-          // })
+          this.allservicesService.sms('Your '+ this.bill['product']+' bill has been payed. Current '+accountname+' balance is '+ this.finalcredit,'+971509786313').subscribe(sms=>{
+            console.log(sms);
+            loading.dismiss()
+            this.navCtrl.pop();
+          },(error)=>{
+            console.log(error)
+            loading.dismiss()
+            this.navCtrl.pop();
+          })
         },(error)=>{
           console.log(error)
           this.navCtrl.pop();
