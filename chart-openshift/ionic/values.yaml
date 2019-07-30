@@ -23,7 +23,7 @@ hpa:
 
 image:
   name: ionic
-  imageName: "mycluster.icp:8500/default/ionic:0.0.1" 
+  imageName: "ionic" 
   imagePullPolicy: Always
   maxSurge: 1
   maxUnavailable: 0
@@ -51,3 +51,12 @@ service:
     type: ClusterIP
     port: 80
     targetPort: 80
+
+
+buildconfig:
+  uri: "https://github.com/cumulus-bank/Mobile-App.git"
+  branch: "master"
+  name: "ionic"
+  imagename: "ionic:latest"
+  secret1: "secretyu"
+  secret2: "secretyu"
