@@ -64,3 +64,10 @@ buildconfig:
 imagestream:
   name:  ionic
   label: ionic
+
+
+routes:
+  host: "ionic-kubeapp.apps.9.30.210.207.nip.io"
+  targetPort: 8080
+  name: ionic
+  weight: 100
