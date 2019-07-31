@@ -2,7 +2,6 @@ import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { ChatService } from "../../services/chat-service/chat.component.service";
 import { ListingService } from "../../services/listing-schedule-service/listing.component.service";
-import { BookingPage } from "../booking/booking";
 import { AllservicesService } from "../../services/allservices/allservices.component.service";
 import {Provider} from '../../provider/provider'
 
