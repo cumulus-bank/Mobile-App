@@ -17,6 +17,7 @@
   </a>
 </p>
 <br>
+
 ## Install Operator on Openshift
 
 1. clone the repo
