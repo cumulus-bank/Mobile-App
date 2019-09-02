@@ -33,7 +33,6 @@ $ oc apply -f deploy/operator.yaml
 $ oc apply -f deploy/crds/cumulusbank_v1alpha1_cumulusionic_crd.yaml
 ```
 ## Deploy Cumulus Bank Mobile App
-1. create mongorest yaml, example reservation microservice. This is a reservation microservice which performs crud operations on mongodb database to store firstname,  lastname, and uid. 
 ``` YAML
 apiVersion: cumulusbank.com/v1alpha1
 kind: CumulusIonic
