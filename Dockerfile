@@ -1,4 +1,4 @@
-FROM ubuntu:17.10 as builder
+FROM ubuntu:18.04 as builder
 RUN apt-get install curl && curl -sL https://deb.nodesource.com/setup_4.x | bash && apt-get install nodejs
 COPY package.json  ./
 
