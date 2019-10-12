@@ -3,7 +3,7 @@ USER root
 RUN apt-get update
 RUN apt-get -y install curl gnupg
 RUN curl -sL https://deb.nodesource.com/setup_11.x  | bash -
-RUN apt-get -y install nodejs
+RUN apt-get -y install nodejs build-essential
 COPY package.json  ./
 
 RUN npm install --unsafe-perm && npm -g config set user root
