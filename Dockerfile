@@ -1,7 +1,8 @@
-FROM node:8-alpine as builder
+FROM node:8 as builder
 
 COPY package.json  ./
 
+RUN npm install --unsafe-perm
 RUN npm set progress=false && npm config set depth 0 && npm cache clean --force
 
 ## Storing node modules on a separate layer will prevent unnecessary npm installs at each build
