@@ -26,10 +26,9 @@ USER root
 COPY nginx/default.conf /etc/nginx/conf.d/
 ## Remove default nginx website
 RUN rm -rf /usr/share/nginx/html/*
-WORKDIR /ng-app
 COPY . .
 ## From 'builder' stage copy over the artifacts in dist folder to default nginx public folder
-COPY  /ng-app/platforms/browser /usr/share/nginx/html
+COPY  platforms/browser /usr/share/nginx/html
 RUN chgrp -R root /var/cache/nginx /var/run /var/log/nginx && \
     chmod -R 770 /var/cache/nginx /var/run /var/log/nginx
 CMD ["nginx", "-g", "daemon off;"]
