@@ -4,3 +4,5 @@ metadata:
   name: ionicapp
 spec:
   replicaCount: 1
+  metadata: 
+    namespace: "cumulusbank"

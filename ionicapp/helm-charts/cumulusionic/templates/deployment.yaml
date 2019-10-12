@@ -4,6 +4,7 @@ metadata:
   name: {{ .Values.metadata.name }} 
   labels:
     app: {{ .Values.metadata.name }} 
+  namespace: {{ .Values.metadata.namespace }}
 spec:
   replicas: {{ .Values.replicaCount }}
   strategy:
@@ -26,6 +27,9 @@ spec:
   paused: false   
   template:
     metadata:
+      annotations:
+        sidecar.istio.io/inject: "true"
+        status.sidecar.istio.io/port: "0"
       name: {{ .Values.metadata.name }} 
       labels:
         app: {{ .Values.metadata.label }} 

@@ -5,12 +5,12 @@ export class Provider {
   public userData: any = null;
   public token: any = null;
   public rawData: any = null;
-  public url: any = "console.9.30.210.207.nip.io";
+  public url: any = "istio-ingressgateway-istio-system.apps.ocpclustervj.os.fyre.ibm.com";
   public abi: any;
   constructor() {
     this.apiUrl = {
-      login: "http://" + this.url + ":31196/login",
-      signup: "http://" + this.url + ":31196/createUser",
+      login: "http://" + this.url + "/authsvc/login",
+      signup: "http://" + this.url + "/authsvc/createUser",
       book: "http://" + this.url + "/bookingsvc/book",
       listBookingByUser:
         "http://" + this.url + "/bookingsvc/listBookingByUser",
@@ -20,20 +20,23 @@ export class Provider {
       listAllFlights: "http://" + this.url + "/listingsvc/listFlights",
       map:  "http://" + this.url + "/mapsvc/getMap",
       email: 'http://' +this.url + "/celerysvc/postEmail",
-      addNewAccount: 'http://' +this.url + ":31784/listAccount",
-      getAccount: 'http://' +this.url + ":31784/listAccount",
-      getAccountById: 'http://' +this.url + ":31784/listAccount",
-      getAccountByID: 'http://' +this.url + ":31784/listAccountID",
-      updateAccount: 'http://' +this.url + ":31784/listAccount",
-      activate: 'http://' +this.url + ":31784/activate",
-      paybill: 'http://' +this.url + ":31784/bill",
-      balanceUpdate: 'http://' +this.url + ":31784/balanceUpdate",
-      addTransaction: 'http://' +this.url + ":31784/transaction",
-      deleteAccount: 'http://' +this.url + ":31784/listAccount",
-      getsessionid:'http://' +this.url + ":31538/session",
-      watsoncall: 'http://' +this.url + ":31538/watson",
-      sms: 'http://' +this.url + ":31168/send",
-      odm:'http://' +this.url + ":32219/odm",
+      addNewAccount: 'http://' +this.url + "/accountsvc/listAccount",
+      getAccount: 'http://' +this.url + "/accountsvc/listAccount",
+      getAccountById: 'http://' +this.url + "/accountsvc/listAccount",
+      getAccountByID: 'http://' +this.url + "/accountsvc/listAccountID",
+      updateAccount: 'http://' +this.url + "/accountsvc/listAccount",
+      activate: 'http://' +this.url + "/accountsvc/activate",
+      paybill: 'http://' +this.url + "/accountsvc/bill",
+      balanceUpdate: 'http://' +this.url + "/accountsvc/balanceUpdate",
+      addTransaction: 'http://' +this.url + "/accountsvc/transaction",
+      deleteAccount: 'http://' +this.url + "/accountsvc/listAccount",
+      getsessionid:'http://' +this.url + "/aisvc/session",
+      watsoncall: 'http://' +this.url + "/aisvc/watson",
+      sms: 'http://' +this.url + "/send",
+      odm:'http://' +this.url + "/odm",
+      customerfeed: 'http://' +this.url + "/accountsvc/customerfeed",
+      ledgerfeed: 'http://' +this.url + "/accountsvc/ledgerfeed",
+      utilitybill: 'http://' +this.url + "/accountsvc/utilitybill",
     };
   }
 }
