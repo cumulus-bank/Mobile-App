@@ -1,5 +1,5 @@
 FROM ubuntu:17.10 as builder
-RUN apt-get update && apt-get install curl && curl -sL https://deb.nodesource.com/setup_4.x | bash && apt-get install nodejs
+RUN apt-get install curl && curl -sL https://deb.nodesource.com/setup_4.x | bash && apt-get install nodejs
 COPY package.json  ./
 
 RUN npm install --unsafe-perm && npm -g config set user root
