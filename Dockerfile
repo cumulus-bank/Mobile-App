@@ -6,7 +6,7 @@ RUN npm install --unsafe-perm
 RUN npm set progress=false && npm config set depth 0 && npm cache clean --force
 
 ## Storing node modules on a separate layer will prevent unnecessary npm installs at each build
-RUN  apk add --no-cache --virtual .gyp python make g++ && npm i && mkdir /ng-app && cp -R ./node_modules ./ng-app && npm i -g ionic@latest @ionic/app-scripts@latest cordova
+RUN  apt-get add --no-cache --virtual .gyp python make g++ && npm i && mkdir /ng-app && cp -R ./node_modules ./ng-app && npm i -g ionic@latest @ionic/app-scripts@latest cordova
 
 WORKDIR /ng-app
 
