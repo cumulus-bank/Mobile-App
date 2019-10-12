@@ -14,8 +14,8 @@ WORKDIR /ng-app
 COPY . .
 
 ## Build the angular app in production mode and store the artifacts in dist folder
-# RUN ionic cordova platform add browser
-# RUN ionic cordova build browser
+RUN ionic cordova platform add browser
+RUN ionic cordova build browser
 
 FROM nginx:latest
 
