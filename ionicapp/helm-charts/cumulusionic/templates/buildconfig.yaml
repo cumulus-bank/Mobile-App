@@ -6,6 +6,7 @@ metadata:
     app: {{ .Values.buildconfig.name }}
   annotations:
     openshift.io/generated-by: OpenShiftWebConsole
+  namespace: {{ .Values.metadata.namespace }}
 spec:
   output:
     to:

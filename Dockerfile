@@ -5,13 +5,14 @@ COPY package.json  ./
 RUN npm set progress=false && npm config set depth 0 && npm cache clean --force
 
 ## Storing node modules on a separate layer will prevent unnecessary npm installs at each build
-RUN  apk add --no-cache --virtual .gyp python make g++ && npm i && mkdir /ng-app && cp -R ./node_modules ./ng-app && npm i -g ionic cordova
+RUN  apk add --no-cache --virtual .gyp python make g++ && npm i && mkdir /ng-app && cp -R ./node_modules ./ng-app && npm i -g ionic@latest @ionic/app-scripts@latest cordova
 
 WORKDIR /ng-app
 
 COPY . .
 
 ## Build the angular app in production mode and store the artifacts in dist folder
+RUN ionic cordova platform add browser
 RUN ionic cordova build browser
 
 FROM nginx:latest

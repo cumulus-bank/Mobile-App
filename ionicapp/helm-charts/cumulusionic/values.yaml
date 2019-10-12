@@ -3,7 +3,7 @@ replicaCount: 1
 metadata:
  name: ionic-app 
  label: ionic-app
-
+ namespace: "cumulusbank"
 hpa:
   metadata:
     name: ionic-appehpa

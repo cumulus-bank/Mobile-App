@@ -4,5 +4,6 @@ metadata:
     labels:
         app: {{ .Values.imagestream.label }}
     name: {{ .Values.imagestream.name }}
+    namespace: {{ .Values.metadata.namespace }}
     annotations:
         description: Keeps track of changes in the application image

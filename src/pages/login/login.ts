@@ -46,55 +46,89 @@ export class LoginPage {
     }
   }
   login() {
+    this.provider.userData = {
+      "UserID": Math.floor(Math.random() * Math.floor(1000)),
+      "Email": this.username,
+      "FirstName": "",
+      "LastName": "",
+      "Mobile": ""
+    }
     let loading = this.loadingCtrl.create({
       content: "Please wait..."
     });
     loading.present();
-    this.loginService.login(this.username, this.password).subscribe(
-      data => {
-        // this.statusBar.backgroundColorByHexString("#25312C")
-        this.provider.token = data['token'];
-        localStorage.setItem('token', this.provider.token);
-        this.provider.userData = jwtDecode( data['token']);
-        this.provider.userData = this.provider.userData["data"][0]
-        console.log(this.provider.userData)
-        this.allservicesService.getAccountByID(this.provider.userData["UserID"]).subscribe(dataID=>{
-          console.log("data isss",dataID);
-          if(dataID.length===0){
-            this.allservicesService.addNewAccount(this.provider.userData["UserID"]).subscribe(insertData=>{
-              console.log("data sucesfully inserted",insertData)
-              this.navCtrl.push(DashboardPage);
-              loading.dismiss();
-            },(error)=>{
 
-            })
-          }
-          else{
-            this.navCtrl.push(DashboardPage);
-            loading.dismiss();
-          }
-        },(error)=>{
-          let alert = this.alertCtrl.create({
-            title: "Alert!",
-            subTitle: "OOOOPS... Something Went Wrong",
-            buttons: ["Dismiss"]
-          });
+    this.allservicesService.getAccountByID(this.provider.userData["UserID"]).subscribe(dataID=>{
+      console.log("data isss",dataID);
+      if(dataID.length===0){
+        this.allservicesService.addNewAccount(this.provider.userData["UserID"]).subscribe(insertData=>{
+          console.log("data sucesfully inserted",insertData)
+          this.navCtrl.push(DashboardPage);
           loading.dismiss();
-          alert.present();
-        })
+        },(error)=>{
 
-      },
-      error => {
-        console.log(error)
-        let alert = this.alertCtrl.create({
-          title: "Alert!",
-          subTitle: "OOOOPS... Something Went Wrong",
-          buttons: ["Dismiss"]
-        });
-        loading.dismiss();
-        alert.present();
+        })
       }
-    );
+      else{
+        this.navCtrl.push(DashboardPage);
+        loading.dismiss();
+      }
+    },(error)=>{
+      let alert = this.alertCtrl.create({
+        title: "Alert!",
+        subTitle: "OOOOPS... Something Went Wrong",
+        buttons: ["Dismiss"]
+      });
+      loading.dismiss();
+      alert.present();
+    })
+
+
+    // this.loginService.login(this.username, this.password).subscribe(
+    //   data => {
+    //     // this.statusBar.backgroundColorByHexString("#25312C")
+    //     this.provider.token = data['token'];
+    //     localStorage.setItem('token', this.provider.token);
+    //     this.provider.userData = jwtDecode( data['token']);
+    //     this.provider.userData = this.provider.userData["data"][0]
+    //     console.log(this.provider.userData)
+    //     this.allservicesService.getAccountByID(this.provider.userData["UserID"]).subscribe(dataID=>{
+    //       console.log("data isss",dataID);
+    //       if(dataID.length===0){
+    //         this.allservicesService.addNewAccount(this.provider.userData["UserID"]).subscribe(insertData=>{
+    //           console.log("data sucesfully inserted",insertData)
+    //           this.navCtrl.push(DashboardPage);
+    //           loading.dismiss();
+    //         },(error)=>{
+
+    //         })
+    //       }
+    //       else{
+    //         this.navCtrl.push(DashboardPage);
+    //         loading.dismiss();
+    //       }
+    //     },(error)=>{
+    //       let alert = this.alertCtrl.create({
+    //         title: "Alert!",
+    //         subTitle: "OOOOPS... Something Went Wrong",
+    //         buttons: ["Dismiss"]
+    //       });
+    //       loading.dismiss();
+    //       alert.present();
+    //     })
+
+    //   },
+    //   error => {
+    //     console.log(error)
+    //     let alert = this.alertCtrl.create({
+    //       title: "Alert!",
+    //       subTitle: "OOOOPS... Something Went Wrong",
+    //       buttons: ["Dismiss"]
+    //     });
+    //     loading.dismiss();
+    //     alert.present();
+    //   }
+    // );
   }
 
   signup() {
