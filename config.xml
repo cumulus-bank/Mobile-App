@@ -136,7 +136,7 @@
     <mfp:languagePreferences>en</mfp:languagePreferences>
     <mfp:APIproxyURL>/adapters/MobileAPIProxy</mfp:APIproxyURL>
     <engine name="browser" spec="5.0.4" />
-    <engine name="ios" spec="4.4.0" />
+    <engine name="ios" spec="^4.4.0" />
     <plugin name="cordova-plugin-advanced-http" spec="2.0.2" />
     <plugin name="cordova-plugin-device" spec="^2.0.2" />
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1">
