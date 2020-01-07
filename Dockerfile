@@ -6,16 +6,10 @@
 # RUN apt-get -y install curl gnupg
 # RUN curl -sL https://deb.nodesource.com/setup_11.x  | bash -
 # RUN apt-get -y install nodejs build-essential
-
 # RUN npm install --unsafe-perm && npm -g config set user root
-
 # RUN npm set progress=false && npm config set depth 0 && npm cache clean --force
-
 # ## Storing node modules on a separate layer will prevent unnecessary npm installs at each build
-# RUN  apt-get install  python make g++ && npm i  && cp -R ./node_modules ./ng-app && npm i -g ionic@latest @ionic/app-scripts@latest cordova
-
-
-
+# RUN  apt-get install  python make g++ && npm i  && cp -R ./node_modules ./ng-app && npm i -g ionic@latest  @ionic/app-scripts@latest cordova@latest
 # ## Build the angular app in production mode and store the artifacts in dist folder
 # RUN ionic cordova platform add browser
 # RUN ionic cordova build browser
